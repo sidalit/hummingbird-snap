@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Hummingbird
+Comment=Listen to and organize your music library
+Exec=hummingbird
+Icon=${SNAP}/meta/gui/hummingbird.png
+Terminal=false
+Type=Application
+Categories=AudioVideo;Audio;Player;
+StartupWMClass=hummingbird_hummingbird

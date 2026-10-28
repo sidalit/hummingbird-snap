@@ -1,0 +1,27 @@
+--- a/src/ui/app.rs
++++ b/src/ui/app.rs
+@@ -316,3 +316,3 @@
+                     }),
+-                    app_id: Some("org.mailliw.hummingbird".to_string()),
++                    app_id: Some("hummingbird_hummingbird".to_string()),
+                     kind: WindowKind::Normal,
+--- a/src/services/controllers/mpris.rs
++++ b/src/services/controllers/mpris.rs
+@@ -153,3 +153,3 @@
+     async fn desktop_entry(&self) -> fdo::Result<String> {
+-        Ok("org.mailliw.hummingbird".to_string())
++        Ok("hummingbird_hummingbird".to_string())
+     }
+@@ -348 +348 @@
+-        let server = crate::RUNTIME.block_on(Server::new("org.mailliw.hummingbird", server))?;
++        let server = crate::RUNTIME.block_on(Server::new("hummingbird", server))?;
+--- a/src/devices/builtin/cpal.rs
++++ b/src/devices/builtin/cpal.rs
+@@ -35,3 +35,3 @@
+         Self {
+-            host: cpal::default_host(),
++            host: cpal::host_from_id(cpal::HostId::Alsa).expect("ALSA host is available"),
+         }
+@@ -43 +43 @@
+-        self.host = cpal::default_host();
++        self.host = cpal::host_from_id(cpal::HostId::Alsa).expect("ALSA host is available");

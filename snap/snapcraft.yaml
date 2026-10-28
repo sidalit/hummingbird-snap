@@ -1,0 +1,77 @@
+name: hummingbird
+base: core26
+version: '0.3.0'
+title: Hummingbird
+icon: snap/gui/hummingbird.png
+summary: A native music player for your local library
+description: |
+  Hummingbird is a music player with a searchable library, playlists, lyrics,
+  ReplayGain, themes and desktop media controls. Play FLAC, MP3, Ogg Vorbis,
+  Opus, AAC and WAV files, with optional Last.fm scrobbling.
+license: Apache-2.0
+grade: stable
+confinement: strict
+website: https://hummingbird.mailliw.org
+source-code:
+  - https://git.mailliw.org/hummingbird/hummingbird
+  - https://github.com/sidalit/hummingbird-snap
+issues:
+  - https://git.mailliw.org/hummingbird/hummingbird/issues
+  - https://github.com/sidalit/hummingbird-snap/issues
+contact: https://github.com/sidalit/hummingbird-snap/issues
+
+platforms:
+  amd64:
+  arm64:
+
+apps:
+  hummingbird:
+    command: bin/hummingbird-launch
+    extensions: [gnome]
+    slots: [mpris]
+    plugs:
+      - audio-playback
+      - home
+      - network
+      - removable-media
+    environment:
+      PATH: $SNAP/bin:$SNAP/usr/bin:$PATH
+      XDG_STATE_HOME: $SNAP_USER_DATA/.local/state
+
+parts:
+  hummingbird:
+    plugin: rust
+    source: https://git.mailliw.org/hummingbird/hummingbird.git
+    source-tag: $SNAPCRAFT_PROJECT_VERSION
+    source-depth: 1
+    rust-channel: '1.98.1'
+    build-packages:
+      - build-essential
+      - cmake
+      - libclang-dev
+      - pkg-config
+      - libasound2-dev
+      - libfontconfig-dev
+      - libpipewire-0.3-dev
+      - libpulse-dev
+      - libwayland-dev
+      - libx11-xcb-dev
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
+      - patch
+    stage-packages:
+      - libasound2-plugins
+      - libxkbcommon-x11-0
+    override-pull: |
+      craftctl default
+      patch --ignore-whitespace -p1 < "$CRAFT_PROJECT_DIR/snap/patches/desktop-integration.patch"
+    override-build: |
+      craftctl default
+      install -Dm755 "$CRAFT_PROJECT_DIR/snap/local/hummingbird-launch" \
+        "$CRAFT_PART_INSTALL/bin/hummingbird-launch"
+      install -Dm644 "$CRAFT_PROJECT_DIR/snap/local/asound.conf" \
+        "$CRAFT_PART_INSTALL/etc/alsa/alsa.conf"
+      install -Dm644 "$CRAFT_PROJECT_DIR/snap/gui/hummingbird.png" \
+        "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/hummingbird_hummingbird.png"
+      install -Dm644 LICENSE "$CRAFT_PART_INSTALL/usr/share/doc/hummingbird/LICENSE"
+      install -Dm644 assets/icons/LICENSE "$CRAFT_PART_INSTALL/usr/share/doc/hummingbird/icons-LICENSE"
