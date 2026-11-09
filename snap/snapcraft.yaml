@@ -72,6 +72,6 @@ parts:
       install -Dm644 "$CRAFT_PROJECT_DIR/snap/local/asound.conf" \
         "$CRAFT_PART_INSTALL/etc/alsa/alsa.conf"
       install -Dm644 "$CRAFT_PROJECT_DIR/snap/gui/hummingbird.png" \
-        "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/hummingbird_hummingbird.png"
+        "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/org.mailliw.hummingbird.png"
       install -Dm644 LICENSE "$CRAFT_PART_INSTALL/usr/share/doc/hummingbird/LICENSE"
       install -Dm644 assets/icons/LICENSE "$CRAFT_PART_INSTALL/usr/share/doc/hummingbird/icons-LICENSE"

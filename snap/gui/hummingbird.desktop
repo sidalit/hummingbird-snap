@@ -6,4 +6,4 @@ Icon=${SNAP}/meta/gui/hummingbird.png
 Terminal=false
 Type=Application
 Categories=AudioVideo;Audio;Player;
-StartupWMClass=hummingbird_hummingbird
+StartupWMClass=org.mailliw.hummingbird
