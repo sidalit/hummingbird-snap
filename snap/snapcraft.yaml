@@ -44,7 +44,7 @@ parts:
     source: https://git.mailliw.org/hummingbird/hummingbird.git
     source-tag: $SNAPCRAFT_PROJECT_VERSION
     source-depth: 1
-    rust-channel: '1.98.1'
+    rust-channel: stable
     build-packages:
       - build-essential
       - cmake
