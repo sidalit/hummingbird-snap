@@ -1,6 +1,6 @@
 name: hummingbird
 base: core26
-version: '0.3.0'
+version: '0.4.0'
 title: Hummingbird
 icon: snap/gui/hummingbird.png
 summary: A native music player for your local library
